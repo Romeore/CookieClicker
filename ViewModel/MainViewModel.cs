@@ -13,9 +13,9 @@ namespace CookieClicker.ViewModel
     public class MainViewModel : ViewModelBase
     {
 
-        private ObservableCollection<ItemModel> _items;
         private double _cookies;
         private double _cookiesPerSecond;
+        private ObservableCollection<ItemModel> _items;
         private ItemModel _multiplyItem;
 
         public ObservableCollection<ItemModel> Items
