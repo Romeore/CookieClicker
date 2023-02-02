@@ -13,6 +13,7 @@
 */
 
 using CommonServiceLocator;
+using CookieClicker.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
@@ -42,6 +43,7 @@ namespace CookieClicker.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
+            SimpleIoc.Default.Register<IDataService, TestDataService>();
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
