@@ -1,4 +1,5 @@
-﻿using CookieClicker.Model;
+﻿using CookieClicker.Helpers;
+using CookieClicker.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace CookieClicker.Services
             items.Add(new ItemModel() { Name = "Shipment", StartingPrice = 25000, Amount = 0, CookieReward = 25 });
             items.Add(new ItemModel() { Name = "Alchemy lab", StartingPrice = 50000, Amount = 0, CookieReward = 50 });
             items.Add(new ItemModel() { Name = "Multiply", StartingPrice = 100, Amount = 1 });
-
+            FileHandler.Serialize("Test1", items);
             return items;
         }
     }

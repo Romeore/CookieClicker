@@ -7,12 +7,20 @@ namespace CookieClicker.ViewModel
 {
     public class ViewModelLocator
     {
+        private bool _testMode = false;
 
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            SimpleIoc.Default.Register<IDataService, TestDataService>();
+            if (_testMode)
+            {
+                SimpleIoc.Default.Register<IDataService, TestDataService>();
+            }
+            else 
+            {
+                SimpleIoc.Default.Register<IDataService, DataService>();
+            }
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
