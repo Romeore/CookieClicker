@@ -12,7 +12,7 @@ namespace CookieClicker.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-
+        private readonly IDataService _dataService;
         private double _cookies;
         private double _cookiesPerSecond;
         private ObservableCollection<ItemModel> _items;
@@ -45,7 +45,6 @@ namespace CookieClicker.ViewModel
             }
             set
             {
-                UserSettings.CookiesPerSecond = value;
                 Set(ref _cookiesPerSecond, value);
             }
         }
@@ -56,13 +55,22 @@ namespace CookieClicker.ViewModel
 
         public MainViewModel(IDataService dataService)
         {
-            Items = new ObservableCollection<ItemModel>(dataService.GetItems());
-            _multiplyItem = Items[Items.Count - 1];
+            _dataService = dataService;
+            LoadSettings();
             PurchaseCommand = new RelayCommand<ItemModel>(Purchase);
             CookieCommand = new RelayCommand(Cookie);
-            Cookies = UserSettings.Cookies;
-            CookiesPerSecond = UserSettings.CookiesPerSecond;
             Task.Factory.StartNew(CookiesInterval);
+        }
+
+        private void LoadSettings()
+        {
+            Cookies = UserSettings.Cookies;
+            Items = new ObservableCollection<ItemModel>(_dataService.GetItems());
+            foreach (var item in Items)
+            {
+                CookiesPerSecond += item.CookieReward * item.Amount;
+            }
+            _multiplyItem = Items[Items.Count - 1];
         }
 
         private async void CookiesInterval()

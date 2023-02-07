@@ -129,7 +129,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Saves\Test1" />
+    <None Include="Saves\Test1.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
